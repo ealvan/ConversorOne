@@ -1,17 +1,20 @@
 package StaticData;
 
 public class CoinData {
-    public static final String COIN_OPTIONS[] = {"Dolar","Euros","Libras Esterlinas","Yen Japones","Won sul-coreano"};
-    public static final double DOLAR_TO_EUROS  = 1d;
-    public static final double DOLAR_TO_LIBRAS = 2d;
-    public static final double DOLAR_TO_YEN    = 3d;
-    public static final double DOLAR_TO_WON    = 4d;
-    public static final double EUROS_TO_LIBRA  = 5d;
-    public static final double EUROS_TO_YEN    = 6d;
-    public static final double EUROS_TO_WON    = 7d;
-    public static final double LIBRA_TO_YEN    = 8d;
-    public static final double LIBRA_TO_WON    = 9d;
-    public static final double YEN_TO_WON    = 10d;
+    public static final String COIN_OPTIONS[] = {
+        "Dolar","Euros","Libras Esterlinas",
+        "Yen Japones","Won sul-coreano"
+    };
+    public static final double DOLAR_TO_EUROS  = 0.94d;
+    public static final double DOLAR_TO_LIBRAS = 0.83d;
+    public static final double DOLAR_TO_YEN    = 134.7d;
+    public static final double DOLAR_TO_WON    = 1298.11d;
+    public static final double EUROS_TO_LIBRA  = 0.88d;
+    public static final double EUROS_TO_YEN    = 142.68d;
+    public static final double EUROS_TO_WON    = 1375.59d;
+    public static final double LIBRA_TO_YEN    = 161.80d;
+    public static final double LIBRA_TO_WON    = 1559.54d;
+    public static final double YEN_TO_WON    = 9.64d;
     
     public static final double conversor[][] = {        
         {
@@ -34,9 +37,9 @@ public class CoinData {
         }
     };
     
-    public static Double table[][] = new Double[Coins.values().length][Coins.values().length];
+    private static Double table[][] = new Double[Coins.values().length][Coins.values().length];
     
-    public static void getTable(){
+    public static Double[][] getTable(){
         int size = Coins.values().length;
         int k = 0;
         for(int i = 0; i < size; ++i){
@@ -52,7 +55,7 @@ public class CoinData {
             }
             
         }
-
+        return CoinData.table;
     }
     public static void printTable(){
         for(int i = 0; i < table.length; ++i){

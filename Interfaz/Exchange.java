@@ -12,21 +12,24 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.text.*;
 import javax.swing.event.*;
 import java.text.*;
 import java.util.HashMap;
+import java.util.Locale;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 public class Exchange {
     final static boolean RIGHT_TO_LEFT = false;
     JComboBox<String> optionsLeft,optionsRight;
 
-    JFormattedTextField amountField;
-    JButton acept;
-    private Coins sourceCoin, targetCoin;
-    private Double amount;
+    private JFormattedTextField amountField;
+    private JButton acept;
+    private JFrame frame;
+    private Coins sourceCoin=null, targetCoin=null;
+    private Double amount = null;
     private static HashMap<String,Coins> book = new HashMap<String,Coins>();
     
     public Exchange(){
@@ -40,7 +43,7 @@ public class Exchange {
     }
     public void setUp(){
         fillBook();
-        JFrame frame = new JFrame("Exchange");
+        frame = new JFrame("Exchange");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addComponents(frame.getContentPane());
         actions();
@@ -63,6 +66,7 @@ public class Exchange {
         
         String country[] = CoinData.COIN_OPTIONS; //{"Dolar","Euros","Libras Esterlinas","Yen Japones","Won sul-coreano"};     
         optionsLeft = new JComboBox<String>(country);
+        sourceCoin = Coins.DOLAR;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 0;
         c.gridx = 0;
@@ -72,6 +76,7 @@ public class Exchange {
 
         optionsRight = new JComboBox<String>(country);
         optionsRight.setSelectedItem(country[1]);
+        targetCoin = Coins.EURO;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 2;
         c.gridy = 0;
@@ -116,6 +121,23 @@ public class Exchange {
         acept.addActionListener(e -> {
             System.out.println((Double)amountField.getValue()+" click");
             this.amount = (Double)amountField.getValue();
+            if(sourceCoin != null && targetCoin != null && this.amount != null && sourceCoin != targetCoin){
+                System.out.println(sourceCoin.toString()+" - "+targetCoin.toString());
+                System.out.println(CoinData.getTable()[sourceCoin.ordinal()][targetCoin.ordinal()]);
+                Double multiplier = CoinData.getTable()[sourceCoin.ordinal()][targetCoin.ordinal()];
+
+                Double converted = this.amount*multiplier;
+                String message = String.format(Locale.FRANCE,"%,.2f %s is %,.4f %s",this.amount,sourceCoin.toString(),converted,targetCoin.toString());
+                JOptionPane.showMessageDialog(frame, message, "Resultados del Conversor", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                
+                String isNull = "Error";
+                isNull = sourceCoin == null ? "Moneda que tiene"
+                        : targetCoin == null ? "Moneda que desea" : this.amount == null ? "Monto": sourceCoin == targetCoin ? "No se puede cambiar a la misma moneda": "Error"; 
+                
+                String message = String.format("%s no especificado(a)",isNull == "$$"?"Error inesperado":isNull);
+                JOptionPane.showMessageDialog(frame, message, "Error information", JOptionPane.ERROR_MESSAGE);
+            }
         });
         ItemListener selectedOption = new ItemListener() {
             public void itemStateChanged(ItemEvent e) {

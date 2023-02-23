@@ -1,2 +1,2 @@
 Make accentual options in JComboBox.
-Make default option settings
+Make default option settings--------------------
