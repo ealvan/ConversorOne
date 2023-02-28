@@ -142,8 +142,8 @@ public class MainGui {
         frame.pack();
         frame.setVisible(true);
     }
-    public static void main(String[] args) {
-        start();
-    }
+    // public static void main(String[] args) {
+    //     start();
+    // }
 }
 

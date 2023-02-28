@@ -67,8 +67,8 @@ public class CoinData {
             System.out.println();
         }
     }
-    public static void main(String[] args) {
-        getTable();        
-        printTable();
-    }
+    // public static void main(String[] args) {
+    //     getTable();        
+    //     printTable();
+    // }
 }

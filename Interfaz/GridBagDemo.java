@@ -104,10 +104,10 @@ public class GridBagDemo extends JFrame {
     }
  
     // Main Method
-    public static void main(String[] args)
-    {
+    // public static void main(String[] args)
+    // {
  
-        // calling the constructor
-        new GridBagDemo();
-    }
+    //     // calling the constructor
+    //     new GridBagDemo();
+    // }
 }
