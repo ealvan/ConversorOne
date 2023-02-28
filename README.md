@@ -8,7 +8,7 @@ Las conversiones son estática por el momento.
 ## Descarga
 
 Para descargar la aplicación:
-- Descargue el archivo `conv.jar` [aqui](./conv.jar). Tambien puede encontrarlo en la siguiente ruta `./bin/conv.jar`
+- Descargue el archivo `conv.jar` [aqui](./conv.jar). Tambien puede encontrarlo en la siguiente ruta `./conv.jar`
 
 ## Ejecución
 Puede ejecutar el programa con el siguiente comando:
