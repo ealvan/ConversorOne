@@ -18,8 +18,11 @@ java -jar conv.jar
 # Imagenes
 
 - Main Menu:
+
 ![Main Option](./imgs/mainOptions.PNG)
 - Unidireccional option:
+
 ![Unidireccional Option](./imgs/unidireccionalOption.PNG)
 - Bidireccional option:
+
 ![Bidireccional Option](./imgs/bidireccionalOption.PNG)
