@@ -47,17 +47,19 @@ public class CoinData {
                 if(j > i){
                     int coinA = Coins.values()[i].ordinal();
                     int coinB = Coins.values()[j].ordinal();
-                    if(j-i == 1) k = coinB;
-                    // System.out.println(coinA+" | | "+(j-k));
-                    table[coinA][coinB] = conversor[i][j-coinB];
-                    table[coinB][coinA] = 1/conversor[i][j-coinB];                    
+                    if(j-i == 1) {
+                        k = coinB;
+                    }
+                    table[coinA][coinB] = conversor[i][j-k];
+                    table[coinB][coinA] = 1/conversor[i][j-k];                    
                 }
             }
-            
         }
+        // printTable();
         return CoinData.table;
     }
     public static void printTable(){
+        System.out.println("Table mxm is: "+table.length);
         for(int i = 0; i < table.length; ++i){
             for(int j = 0; j < table.length; ++j){
                 System.out.print(table[i][j]+" ");
